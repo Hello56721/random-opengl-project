@@ -10,6 +10,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}:${CMAKE_SOURCE_DIR}/cmake")
 # Options
 option(BUILD_SHARED_LIBS DOC "Wether or not to build shared libraries.")
 
+# Find the libraries
+find_package("GLFW")
+
 # Turn on high warning levels
 if (MSVC)
     add_compile_options("/W4")
