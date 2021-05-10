@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 # Options
-option(BUILD_SHARED_LIBS "true" DOC "Wether or not to build shared libraries.")
+option(BUILD_SHARED_LIBS "Wether or not to build shared libraries." "true")
 
 # Find the libraries
 find_package("GLFW")
