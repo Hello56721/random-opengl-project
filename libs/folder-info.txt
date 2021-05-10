@@ -1,0 +1,1 @@
+Place all libraries here, because it is where the build script will try to look for them. (Other than the system default locations, of course)
