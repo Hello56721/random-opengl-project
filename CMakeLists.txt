@@ -14,7 +14,7 @@ option(BUILD_SHARED_LIBS DOC "Wether or not to build shared libraries.")
 if (MSVC)
     add_compile_options("/W4")
 else()
-    add_compile_options("-Wall")
+    add_compile_options("-Wall" "-pedantic")
 endif()
 
 add_executable("random-opengl-project")
