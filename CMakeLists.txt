@@ -13,6 +13,9 @@ option(BUILD_SHARED_LIBS DOC "Wether or not to build shared libraries.")
 # Find the libraries
 find_package("GLFW")
 
+# Set the includes
+include_directories("${GLFW_INCLUDE_DIR}" "include")
+
 # Turn on high warning levels
 if (MSVC)
     add_compile_options("/W4")
