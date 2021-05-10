@@ -8,13 +8,27 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 # Options
-option(BUILD_SHARED_LIBS DOC "Wether or not to build shared libraries.")
+option(BUILD_SHARED_LIBS "true" DOC "Wether or not to build shared libraries.")
 
 # Find the libraries
 find_package("GLFW")
+find_package("GLAD")
 
 # Set the includes
-include_directories("${GLFW_INCLUDE_DIR}" "include")
+include_directories("${GLFW_INCLUDE_DIR}" "${GLAD_INCLUDE_DIR}" "include")
+
+# Set up GLAD
+add_library("GLAD" "${GLAD_SOURCE_FILE}")
+link_libraries("GLAD")
+
+# Link GLFW
+if (WIN32)
+    link_libraries("${GLFW_LIBRARY}" "gdi32" "opengl32")
+elseif(UNIX AND NOT APPLE)
+    link_libraries("${GLFW_LIBRARY}" "GL" "X11" "pthread" "Xrandr" "dl")
+elseif(APPLE)
+    link_libraries("${GLFW_LIBRARY}")
+endif()
 
 # Turn on high warning levels
 if (MSVC)
