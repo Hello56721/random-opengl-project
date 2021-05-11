@@ -40,3 +40,4 @@ endif()
 add_executable("random-opengl-project")
 
 add_subdirectory("src")
+add_subdirectory("include")
