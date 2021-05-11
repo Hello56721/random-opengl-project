@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <opengl-debug.hpp>
+
 static GLFWwindow* window;
 
 // Create and check if the window is valid
