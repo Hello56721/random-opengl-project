@@ -35,6 +35,8 @@ int main() {
     return 0;
 }
 
+
+
 static GLFWwindow* createWindow(int width, int height, std::string_view title) {
     GLFWwindow* window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
     if (window == nullptr) {
@@ -46,6 +48,8 @@ static GLFWwindow* createWindow(int width, int height, std::string_view title) {
     
     return window;
 }
+
+
 
 static void initGLFW(unsigned int glVersionMajor, unsigned int glVersionMinor) {
     if (!glfwInit()) {
@@ -59,6 +63,8 @@ static void initGLFW(unsigned int glVersionMajor, unsigned int glVersionMinor) {
     
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 }
+
+
 
 static void initWindow() {
     initGLFW(3, 3);
@@ -74,6 +80,8 @@ static void initWindow() {
     }
 }
 
+
+
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
     
@@ -82,12 +90,16 @@ Program::Program() {
     glfwShowWindow(window);
 }
 
+
+
 void Program::update() {
     glClear(GL_COLOR_BUFFER_BIT);
     
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
+
+
 
 Program::~Program() {
     glfwTerminate();
