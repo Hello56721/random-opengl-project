@@ -9,16 +9,16 @@ namespace OpenGLDebug {
     
     // Check the OpenGL call for errors
     template<typename callType, typename... argsType>
-    void glCallImpl(std::string_view file, int line, std::string_view func, callType call, argsType... args) {
+    void glCallImpl(std::string_view file, int line, callType call, argsType... args) {
         call(args...);
-        printErrors(file, line, func);
+        printErrors(file, line);
     }
     
     // Same as the function above, but returns a value instead of null
     template<typename callType, typename... argsType>
-    auto glCallRImpl(std::string_view file, int line, std::string_view func, callType call, argsType... args) {
+    auto glCallRImpl(std::string_view file, int line, callType call, argsType... args) {
         auto result = call(args...);
-        printErrors(file, line, func);
+        printErrors(file, line);
         return result;
     }
 }
