@@ -9,7 +9,7 @@
     #define glCallR(x, ...) OpenGLDebug::glCallRImpl(__FILE__, __LINE__, x, __VA_ARGS__)
     #define glCallN(x) OpenGLDebug::glCallImpl(__FILE__, __LINE__, x)
     #define glCallRN(x) OpenGLDebug::glCallRImpl(__FILE__, __LINE__, x)
-#elif ENABLE_OPENGL_DEBUGGING = 0
+#elif ENABLE_OPENGL_DEBUGGING == 0
     #define glCall(x, ...) x(__VA_ARGS__)
     #define glCallR(x, ...) x(__VA_ARGS__)
     #define glCallN(x) x()
