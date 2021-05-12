@@ -3,6 +3,8 @@
 
 #include <window.hpp>
 
+GLFWwindow* Window::window;
+
 GLFWwindow* Window::createWindow(int width, int height, std::string_view title) {
     GLFWwindow* window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
     if (window == nullptr) {
