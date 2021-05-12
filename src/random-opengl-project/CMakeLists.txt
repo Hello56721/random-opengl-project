@@ -3,5 +3,6 @@ target_sources(
     
     "main.cpp"
     "opengl-debug.cpp"
+    "program.cpp"
     "window.cpp"
 )
