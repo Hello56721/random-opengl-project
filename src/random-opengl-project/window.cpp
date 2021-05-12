@@ -37,9 +37,9 @@ void Window::initGLFW(unsigned int glVersionMajor, unsigned int glVersionMinor) 
 void Window::initWindow() {
     initGLFW(3, 3);
     
-    const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    window = createWindow(1, 1, "Random OpenGL Project");
     
-    window = createWindow(videoMode->width / 1.25, videoMode->height / 1.25, "Random OpenGL Project");
+    glfwMaximizeWindow(window);
     
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "[FATAL ERROR]: Failed to initialize GLAD." << std::endl;
