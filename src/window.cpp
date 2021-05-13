@@ -1,9 +1,14 @@
 #include <glad/glad.h>
+#include <opengl-debug.hpp>
 #include <iostream>
 
 #include <window.hpp>
 
 GLFWwindow* Window::window;
+
+static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
+    glCall(glViewport, 0, 0, width, height);
+}
 
 GLFWwindow* Window::createWindow(int width, int height, std::string_view title) {
     GLFWwindow* window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
@@ -46,4 +51,6 @@ void Window::initWindow() {
         glfwTerminate();
         throw -1;
     }
+    
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 }
