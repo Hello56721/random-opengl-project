@@ -12,8 +12,8 @@ namespace ShaderUtils {
     
     // A struct containing two shader sources
     struct ShaderSources {
-        const char* vertex;
-        const char* fragment;
+        std::string vertex;
+        std::string fragment;
     };
     
     // Split a single shader source file into two shader sources

@@ -92,5 +92,5 @@ ShaderUtils::ShaderSources ShaderUtils::processShader(std::string_view path) {
         }
     }
     
-    return { vertex.c_str(), fragment.c_str() };
+    return { vertex, fragment };
 }
