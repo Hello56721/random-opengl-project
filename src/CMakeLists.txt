@@ -1,1 +1,8 @@
-add_subdirectory("random-opengl-project")
+target_sources(
+    "random-opengl-project" PRIVATE
+    
+    "main.cpp"
+    "opengl-debug.cpp"
+    "program.cpp"
+    "window.cpp"
+)
