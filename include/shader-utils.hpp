@@ -9,6 +9,15 @@ namespace ShaderUtils {
     
     // Create a shader program and return it's handle
     unsigned int createProgram(unsigned int vertex, unsigned int fragment, std::string_view name);
+    
+    // A struct containing two shader sources
+    struct ShaderSources {
+        const char* vertex;
+        const char* fragment;
+    };
+    
+    // Split a single shader source file into two shader sources
+    ShaderSources processShader(std::string_view file);
 }
 
 #endif /* C0226920_2CC9_46E4_90BC_5D31653C0222 */
