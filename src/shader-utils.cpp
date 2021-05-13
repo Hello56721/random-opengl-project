@@ -1,6 +1,8 @@
 #include <opengl-debug.hpp>
 #include <glad/glad.h>
 #include <iostream>
+#include <fstream>
+#include <utils.hpp>
 
 #include <shader-utils.hpp>
 
@@ -49,4 +51,46 @@ unsigned int ShaderUtils::createProgram(unsigned int vertex, unsigned int fragme
     }
     
     return program;
+}
+
+ShaderUtils::ShaderSources ShaderUtils::processShader(std::string_view path) {
+    std::ifstream file(path.data());
+    if (!file) {
+        std::cerr << "[ERROR]: Could not find or access " << path << std::endl;
+        return { "", "" };
+    }
+    
+    enum class Mode {
+        Null, Vertex, Fragment
+    } mode;
+    
+    std::string vertex;
+    std::string fragment;
+    
+    while (!file.eof()) {
+        std::string line;
+        std::getline(file, line);
+        
+        // Check if it is a custom expression
+        if (Utils::startsWith(line, "//@")) {
+            if (line == "//@ vertex") {
+                mode = Mode::Vertex;
+            } else if (line == "//@ fragment") {
+                mode = Mode::Fragment;
+            }
+        } else {
+            switch (mode) {
+            case Mode::Vertex:
+                vertex += line += "\n";
+                break;
+            case Mode::Fragment:
+                fragment += line += "\n";
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    
+    return { vertex.c_str(), fragment.c_str() };
 }
