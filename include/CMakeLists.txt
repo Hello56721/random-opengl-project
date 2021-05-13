@@ -5,5 +5,6 @@ target_sources(
     "program.hpp"
     "shader-utils.hpp"
     "utils.hpp"
+    "vertex-array.hpp"
     "window.hpp"
 )
