@@ -6,8 +6,13 @@
 
 GLFWwindow* Window::window;
 
+static unsigned int width;
+static unsigned int height;
+
 static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
     glCall(glViewport, 0, 0, width, height);
+    ::width = width;
+    ::height = height;
 }
 
 GLFWwindow* Window::createWindow(int width, int height, std::string_view title) {
@@ -18,6 +23,9 @@ GLFWwindow* Window::createWindow(int width, int height, std::string_view title) 
         throw -1;
     }
     glfwMakeContextCurrent(window);
+    
+    ::width = width;
+    ::height = height;
     
     return window;
 }
@@ -44,8 +52,6 @@ void Window::initWindow() {
     
     window = createWindow(1, 1, "Random OpenGL Project");
     
-    glfwMaximizeWindow(window);
-    
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "[FATAL ERROR]: Failed to initialize GLAD." << std::endl;
         glfwTerminate();
@@ -53,4 +59,6 @@ void Window::initWindow() {
     }
     
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    
+    glfwMaximizeWindow(window);
 }
