@@ -4,7 +4,7 @@
 #include <mesh.hpp>
 
 namespace SimpleRenderer {
-    void renderMesh(Mesh& mesh);
+    void renderMesh(Mesh& mesh, bool useEBO);
 }
 
 #endif /* EE55C543_6CFE_4E6B_9436_5C65ACEA167B */
