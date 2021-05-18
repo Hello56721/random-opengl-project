@@ -26,7 +26,7 @@ public:
     
     // Copy Constructor and assignment operator
     Mesh(Mesh& src);
-    Mesh& operator=(Mesh rhs);
+    Mesh& operator=(Mesh& rhs);
     
     // Move Constructor and assignment operator
     Mesh(Mesh&& src);
