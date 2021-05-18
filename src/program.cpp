@@ -31,33 +31,18 @@ Program::Program() {
     glCall(glDeleteShader, vertexShader);
     glCall(glDeleteShader, fragmentShader);
     
-    /*glCall(glGenVertexArrays, 1, &vao);
-    glCall(glBindVertexArray, vao);*/
-    
-    std::vector<Vertex> vertices {
-        { {0.5f,  0.5f, 0.0f}},
-        { {0.5f, -0.5f, 0.0f}},
-        {{-0.5f, -0.5f, 0.0f}},
-        {{-0.5f,  0.5f, 0.0f}}
-    };
-    
-    /*glCall(glGenBuffers, 1, &vbo);
-    glCall(glBindBuffer, GL_ARRAY_BUFFER, vbo);
-    glCall(glBufferData, GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);*/
-    
-    std::vector<unsigned int> indices {
-        0, 1, 2,
-        0, 3, 2
-    };
-    
-    /*glCall(glGenBuffers, 1, &ebo);
-    glCall(glBindBuffer, GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glCall(glBufferData, GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-    glCall(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glCall(glEnableVertexAttribArray, 0);*/
-    
-    mesh = Mesh(vertices, indices);
+    mesh = Mesh(
+        {
+            {{ 0.5f,  0.5f, 0.0f}},
+            {{ 0.5f, -0.5f, 0.0f}},
+            {{-0.5f, -0.5f, 0.0f}},
+            {{-0.5f,  0.5f, 0.0f}}
+        },
+        {
+            0, 1, 2,
+            0, 3, 2
+        }
+    );
     
     glfwShowWindow(Window::window);
 }
