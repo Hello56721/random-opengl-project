@@ -6,6 +6,7 @@ target_sources(
     "opengl-debug.cpp"
     "program.cpp"
     "shader-utils.cpp"
+    "simple-renderer.cpp"
     "utils.cpp"
     "window.cpp"
 )
