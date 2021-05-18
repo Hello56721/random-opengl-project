@@ -4,6 +4,8 @@
 #include <iostream>
 #include <shader-utils.hpp>
 #include <vector>
+#include <mesh.hpp>
+#include <simple-renderer.hpp>
 
 #include <program.hpp>
 
@@ -12,6 +14,8 @@ static unsigned int shaderProgram;
 static unsigned int vao;
 static unsigned int vbo;
 static unsigned int ebo;
+
+static Mesh mesh;
 
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
@@ -27,31 +31,33 @@ Program::Program() {
     glCall(glDeleteShader, vertexShader);
     glCall(glDeleteShader, fragmentShader);
     
-    glCall(glGenVertexArrays, 1, &vao);
-    glCall(glBindVertexArray, vao);
+    /*glCall(glGenVertexArrays, 1, &vao);
+    glCall(glBindVertexArray, vao);*/
     
-    float vertices[] =  {
-         0.5f,  0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-        -0.5f,  0.5f, 0.0f
+    std::vector<Vertex> vertices {
+        { {0.5f,  0.5f, 0.0f}},
+        { {0.5f, -0.5f, 0.0f}},
+        {{-0.5f, -0.5f, 0.0f}},
+        {{-0.5f,  0.5f, 0.0f}}
     };
     
-    glCall(glGenBuffers, 1, &vbo);
+    /*glCall(glGenBuffers, 1, &vbo);
     glCall(glBindBuffer, GL_ARRAY_BUFFER, vbo);
-    glCall(glBufferData, GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glCall(glBufferData, GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);*/
     
-    unsigned int indices[] {
+    std::vector<unsigned int> indices {
         0, 1, 2,
         0, 3, 2
     };
     
-    glCall(glGenBuffers, 1, &ebo);
+    /*glCall(glGenBuffers, 1, &ebo);
     glCall(glBindBuffer, GL_ELEMENT_ARRAY_BUFFER, ebo);
     glCall(glBufferData, GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
     glCall(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glCall(glEnableVertexAttribArray, 0);
+    glCall(glEnableVertexAttribArray, 0);*/
+    
+    mesh = Mesh(vertices, indices);
     
     glfwShowWindow(Window::window);
 }
@@ -62,9 +68,10 @@ void Program::update() {
     glClear(GL_COLOR_BUFFER_BIT);
     
     glCall(glUseProgram, shaderProgram);
+    SimpleRenderer::renderMesh(mesh, true);
     
-    glCall(glBindVertexArray, vao);
-    glCall(glDrawElements, GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    //glCall(glBindVertexArray, vao);
+    //glCall(glDrawElements, GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
     
     glfwSwapBuffers(Window::window);
     glfwPollEvents();
