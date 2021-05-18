@@ -1,2 +1,3 @@
-libs/GLAD/** linguist-vendored
-libs/GLM/** linguist-vendored
+libs/GLAD/* linguist-vendored
+libs/GLM/* linguist-vendored
+libs/GLM/doc/* linguist-vendored
