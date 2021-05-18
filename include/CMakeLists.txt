@@ -4,6 +4,7 @@ target_sources(
     "opengl-debug.hpp"
     "program.hpp"
     "shader-utils.hpp"
+    "simple-renderer.hpp"
     "utils.hpp"
     "mesh.hpp"
     "window.hpp"
