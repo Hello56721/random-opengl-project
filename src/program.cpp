@@ -11,10 +11,6 @@
 
 static unsigned int shaderProgram;
 
-static unsigned int vao;
-static unsigned int vbo;
-static unsigned int ebo;
-
 static Mesh mesh;
 
 Program::Program() {
@@ -55,9 +51,6 @@ void Program::update() {
     glCall(glUseProgram, shaderProgram);
     SimpleRenderer::renderMesh(mesh, true);
     
-    //glCall(glBindVertexArray, vao);
-    //glCall(glDrawElements, GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-    
     glfwSwapBuffers(Window::window);
     glfwPollEvents();
 }
@@ -65,10 +58,5 @@ void Program::update() {
 
 
 Program::~Program() {
-    glCall(glDeleteProgram, shaderProgram);
-    glCall(glDeleteBuffers, 1, &vbo);
-    glCall(glDeleteBuffers, 1, &ebo);
-    glCall(glDeleteVertexArrays, 1, &vao);
-    
     glfwTerminate();
 }
