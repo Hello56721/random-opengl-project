@@ -1,3 +1,6 @@
 libs/GLAD/* linguist-vendored
 libs/GLM/* linguist-vendored
 libs/GLM/doc/* linguist-vendored
+libs/GLM/doc/api/* linguist-vendored
+libs/GLM/doc/manual/* linguist-vendored
+libs/GLM/doc/theme/* linguist-vendored
