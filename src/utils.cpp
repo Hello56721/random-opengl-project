@@ -1,4 +1,3 @@
-
 #include <utils.hpp>
 
 bool Utils::startsWith(std::string_view main, std::string_view sub) {
