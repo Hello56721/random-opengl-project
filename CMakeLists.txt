@@ -10,6 +10,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 # Options
 option(BUILD_SHARED_LIBS "Wether or not to build shared libraries." "true")
 option(ENABLE_OPENGL_DEBUGGING "Wether or not to enable OpenGL debugging." "true")
+option(GENERATE_DEBUG_INFORMATION "Whether or not to generate debug information" "false)")
 
 # Configure the options
 configure_file("cmake-configurations.hpp" "cmake-configurations.hpp")
@@ -43,6 +44,19 @@ if (MSVC)
     add_compile_options("/W4")
 else()
     add_compile_options("-Wall" "-pedantic")
+endif()
+
+# Turn on debug informations
+if (MSVC)
+    if (GENERATE_DEBUG_INFORMATION)
+        add_compile_options("/DEBUG")
+        add_link_options("/DEBUG")
+    endif()
+else()
+    if (GENERATE_DEBUG_INFORMATION)
+        add_compile_options("-g3")
+        add_link_options("-g3")
+    endif()
 endif()
 
 add_executable("random-opengl-project")
