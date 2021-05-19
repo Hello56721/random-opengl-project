@@ -24,6 +24,9 @@ include_directories("${GLFW_INCLUDE_DIR}" "${GLAD_INCLUDE_DIR}" "${GLM_INCLUDE_D
 
 # Set up GLAD
 add_library("GLAD" "${GLAD_SOURCE_FILE}")
+if (BUILD_SHARED_LIBS)
+    target_compile_definitions("GLAD" PUBLIC "GLAD_GLAPI_EXPORT" PRIVATE "GLAD_GLAPI_EXPORT_BUILD")
+endif()
 link_libraries("GLAD")
 
 # Link GLFW
