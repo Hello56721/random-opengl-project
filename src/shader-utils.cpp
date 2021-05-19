@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <utils.hpp>
+#include <string>
 
 #include <shader-utils.hpp>
 
@@ -62,7 +63,7 @@ ShaderUtils::ShaderSources ShaderUtils::processShader(std::string_view path) {
     
     enum class Mode {
         Null, Vertex, Fragment
-    } mode;
+    } mode = Mode::Null;
     
     std::string vertex;
     std::string fragment;
