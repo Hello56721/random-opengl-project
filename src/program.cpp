@@ -11,7 +11,7 @@
 
 static unsigned int shaderProgram;
 
-static Mesh mesh;
+static Mesh* mesh;
 
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
@@ -27,7 +27,7 @@ Program::Program() {
     glCall(glDeleteShader, vertexShader);
     glCall(glDeleteShader, fragmentShader);
     
-    mesh = Mesh(
+    mesh = new Mesh(
         {
             {{ 0.5f,  0.5f, 0.0f}},
             {{ 0.5f, -0.5f, 0.0f}},
@@ -49,7 +49,7 @@ void Program::update() {
     glClear(GL_COLOR_BUFFER_BIT);
     
     glCall(glUseProgram, shaderProgram);
-    SimpleRenderer::renderMesh(mesh, true);
+    SimpleRenderer::renderMesh(*mesh, true);
     
     glfwSwapBuffers(Window::window);
     glfwPollEvents();
@@ -58,5 +58,7 @@ void Program::update() {
 
 
 Program::~Program() {
+    delete mesh;
+    
     glfwTerminate();
 }
