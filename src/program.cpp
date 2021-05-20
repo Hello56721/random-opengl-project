@@ -21,7 +21,7 @@ Program::Program() {
     // Initialize the Shaders
     ShaderUtils::ShaderSources shaderSources = ShaderUtils::processShader("shaders/basic.glsl");
     unsigned int vertexShader = ShaderUtils::createShader(shaderSources.vertex.c_str(), GL_VERTEX_SHADER, "shaders/basic.glsl");
-    unsigned int fragmentShader = ShaderUtils::createShader(shaderSources.fragment.c_str(), GL_FRAGMENT_SHADER, "shaders/fragment.glsl");
+    unsigned int fragmentShader = ShaderUtils::createShader(shaderSources.fragment.c_str(), GL_FRAGMENT_SHADER, "shaders/basic.glsl");
     shaderProgram = ShaderUtils::createProgram(vertexShader, fragmentShader, "shaders/basic.glsl");
     // We don't need the shaders anymore, since they are linked to the program
     glCall(glDeleteShader, vertexShader);
