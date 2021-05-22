@@ -12,7 +12,7 @@ public:
     Shader();
     
     // Constructor
-    Shader(std::string_view vertexPath, std::string_view fragmentPath);
+    Shader(std::string_view path);
     
     // Use/Activate the shader
     void use();
