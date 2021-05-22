@@ -5,6 +5,7 @@ target_sources(
     "mesh.cpp"
     "opengl-debug.cpp"
     "program.cpp"
+    "shader-class.cpp"
     "shader-utils.cpp"
     "simple-renderer.cpp"
     "utils.cpp"
