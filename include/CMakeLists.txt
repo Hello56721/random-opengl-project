@@ -3,6 +3,8 @@ target_sources(
     
     "opengl-debug.hpp"
     "program.hpp"
+    "shader-class.hpp"
+    "shader-manager.hpp"
     "shader-utils.hpp"
     "simple-renderer.hpp"
     "utils.hpp"
