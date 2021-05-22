@@ -6,26 +6,20 @@
 #include <vector>
 #include <mesh.hpp>
 #include <simple-renderer.hpp>
+#include <shader-class.hpp>
 
 #include <program.hpp>
 
-static unsigned int shaderProgram;
-
 static Mesh* mesh;
+
+static Shader basicShader;
 
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
     
     Window::initWindow();
     
-    // Initialize the Shaders
-    ShaderUtils::ShaderSources shaderSources = ShaderUtils::processShader("shaders/basic.glsl");
-    unsigned int vertexShader = ShaderUtils::createShader(shaderSources.vertex.c_str(), GL_VERTEX_SHADER, "shaders/basic.glsl");
-    unsigned int fragmentShader = ShaderUtils::createShader(shaderSources.fragment.c_str(), GL_FRAGMENT_SHADER, "shaders/basic.glsl");
-    shaderProgram = ShaderUtils::createProgram(vertexShader, fragmentShader, "shaders/basic.glsl");
-    // We don't need the shaders anymore, since they are linked to the program
-    glCall(glDeleteShader, vertexShader);
-    glCall(glDeleteShader, fragmentShader);
+    basicShader = Shader("shaders/basic.glsl");
     
     mesh = new Mesh(
         {
@@ -48,7 +42,7 @@ Program::Program() {
 void Program::update() {
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glCall(glUseProgram, shaderProgram);
+    basicShader.use();
     SimpleRenderer::renderMesh(*mesh, true);
     
     glfwSwapBuffers(Window::window);
