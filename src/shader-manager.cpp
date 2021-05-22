@@ -3,6 +3,10 @@
 #include <glad/glad.h>
 #include <opengl-debug.hpp>
 
+ShaderManager::ShaderManager() {
+    
+}
+
 ShaderManager& ShaderManager::getInstance() {
     static ShaderManager instance;
     return instance;
