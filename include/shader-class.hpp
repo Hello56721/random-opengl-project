@@ -7,6 +7,8 @@ class Shader {
 private:
     unsigned int program;
     
+    friend class ShaderManager;
+    
 public:
     // Default Constructor
     Shader();
