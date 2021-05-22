@@ -2,6 +2,7 @@
 #define C0226920_2CC9_46E4_90BC_5D31653C0222
 
 #include <string_view>
+#include <string>
 
 namespace ShaderUtils {
     // Create a shader object and return it's handle

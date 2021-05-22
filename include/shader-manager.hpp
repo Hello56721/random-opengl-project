@@ -24,6 +24,6 @@ public:
     
     // Destroy Everything (MuaHAHAHAH!!!)
     ~ShaderManager();
-}
+};
 
 #endif /* D4C7D082_AE4F_4B1C_AA95_93C630378F89 */
