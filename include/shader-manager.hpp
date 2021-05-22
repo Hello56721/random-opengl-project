@@ -5,8 +5,12 @@
 
 class ShaderManager {
 private:
-    // Default Constructor
+    // Default Constructor is made private so instances can't be created
     ShaderManager();
+    
+    // Made the copy constructor and assignment operator private so copies can't be made
+    ShaderManager(ShaderManager& src);
+    ShaderManager& operator=(ShaderManager& rhs);
     
     // Friend class Shader
     friend class Shader;
@@ -16,7 +20,7 @@ private:
     
 public:
     // Obtain the instance
-    static void getInstance();
+    static ShaderManager& getInstance();
     
     // Destroy Everything (MuaHAHAHAH!!!)
     ~ShaderManager();
