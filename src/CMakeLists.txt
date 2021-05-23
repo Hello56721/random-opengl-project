@@ -3,6 +3,7 @@ target_sources(
     
     "main.cpp"
     "mesh.cpp"
+    "model-loader.cpp"
     "opengl-debug.cpp"
     "program.cpp"
     "shader-class.cpp"
