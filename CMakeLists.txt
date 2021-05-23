@@ -19,12 +19,14 @@ configure_file("cmake-configurations.hpp" "cmake-configurations.hpp")
 find_package("GLFW")
 find_package("GLAD")
 find_package("GLM")
+find_package("Assimp")
 
 # Set the includes
 include_directories(
     "${GLFW_INCLUDE_DIR}" 
     "${GLAD_INCLUDE_DIR}" 
-    "${GLM_INCLUDE_DIR}" 
+    "${GLM_INCLUDE_DIR}"
+    "${ASSIMP_INCLUDE_DIR}"
     "${CMAKE_SOURCE_DIR}/include" 
     "${CMAKE_BINARY_DIR}"
 )
@@ -38,11 +40,11 @@ link_libraries("GLAD")
 
 # Link GLFW
 if (WIN32)
-    link_libraries("${GLFW_LIBRARY}" "gdi32" "opengl32")
+    link_libraries("${GLFW_LIBRARY}" "${ASSIMP_LIBRARY}" "gdi32" "opengl32")
 elseif(UNIX AND NOT APPLE)
-    link_libraries("${GLFW_LIBRARY}" "GL" "X11" "pthread" "Xrandr" "dl")
+    link_libraries("${GLFW_LIBRARY}" "${ASSIMP_LIBRARY}" "GL" "X11" "pthread" "Xrandr" "dl")
 elseif(APPLE)
-    link_libraries("${GLFW_LIBRARY}")
+    link_libraries("${GLFW_LIBRARY}" "${ASSIMP_LIBRARY}")
 endif()
 
 # Turn on high warning levels
