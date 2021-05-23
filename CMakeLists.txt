@@ -21,7 +21,13 @@ find_package("GLAD")
 find_package("GLM")
 
 # Set the includes
-include_directories("${GLFW_INCLUDE_DIR}" "${GLAD_INCLUDE_DIR}" "${GLM_INCLUDE_DIR}" "${CMAKE_SOURCE_DIR}/include" "${CMAKE_BINARY_DIR}")
+include_directories(
+    "${GLFW_INCLUDE_DIR}" 
+    "${GLAD_INCLUDE_DIR}" 
+    "${GLM_INCLUDE_DIR}" 
+    "${CMAKE_SOURCE_DIR}/include" 
+    "${CMAKE_BINARY_DIR}"
+)
 
 # Set up GLAD
 add_library("GLAD" "${GLAD_SOURCE_FILE}")
