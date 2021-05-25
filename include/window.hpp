@@ -3,6 +3,7 @@
 
 #include <GLFW/glfw3.h>
 #include <string_view>
+#include <glm/glm.hpp>
 
 namespace Window {
     extern GLFWwindow* window;
@@ -15,6 +16,12 @@ namespace Window {
 
     // Everything having to do with initializing window
     void initWindow();
+    
+    // Update the window
+    void update();
+    
+    // Get the projection matrix
+    glm::mat4& getProjectionMatrix();
 }
 
 #endif /* C6D19E01_8636_4183_90DA_0ACBA4778316 */

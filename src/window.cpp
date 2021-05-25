@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <opengl-debug.hpp>
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <window.hpp>
 
@@ -8,6 +10,9 @@ GLFWwindow* Window::window;
 
 static unsigned int width;
 static unsigned int height;
+
+// The project matrix
+glm::mat4 projection;
 
 static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
     glCall(glViewport, 0, 0, width, height);
@@ -26,6 +31,8 @@ GLFWwindow* Window::createWindow(int width, int height, std::string_view title) 
     
     ::width = width;
     ::height = height;
+    
+    projection = glm::perspective(glm::radians(45.0), static_cast<double>(width) / static_cast<double>(height), 0.1, 100.0);
     
     return window;
 }
@@ -61,4 +68,15 @@ void Window::initWindow() {
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
     
     glfwMaximizeWindow(window);
+}
+
+void Window::update() {
+    projection = glm::perspective(glm::radians(45.0), static_cast<double>(width) / static_cast<double>(height), 0.1, 100.0);
+    
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+}
+
+glm::mat4& Window::getProjectionMatrix() {
+    return projection;
 }
