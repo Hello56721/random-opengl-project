@@ -8,6 +8,7 @@
 #include <simple-renderer.hpp>
 #include <shader-class.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <camera.hpp>
 
 #include <program.hpp>
 
@@ -15,7 +16,22 @@ static Mesh* mesh;
 
 static Shader basicShader;
 
-static glm::mat4 view;
+static Camera camera;
+
+struct {
+    double deltaTime;
+} Time;
+
+struct {
+    double lastX;
+    double lastY;
+    bool firstMouse = true;
+    double sensitivity;
+} Cursor;
+
+static void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);
+
+static void handleInput();
 
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
@@ -37,8 +53,11 @@ Program::Program() {
         }
     );
     
-    view = glm::mat4(1.0);
-    view = glm::translate(view, glm::vec3(0.0, 0.0, -3.0));
+    
+    glfwSetCursorPosCallback(Window::window, cursorPosCallback);
+    glfwSetInputMode(Window::window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    
+    Cursor.sensitivity = 2.5;
     
     glfwShowWindow(Window::window);
 }
@@ -46,17 +65,24 @@ Program::Program() {
 
 
 void Program::update() {
+    double startTime = glfwGetTime();
+    
+    handleInput();
+    
     glClear(GL_COLOR_BUFFER_BIT);
     
     basicShader.use();
     
     basicShader.setUniform("model", glm::mat4(1.0));
-    basicShader.setUniform("view", view);
+    basicShader.setUniform("view", camera.getLookAtMatrix());
     basicShader.setUniform("projection", Window::getProjectionMatrix());
     
     SimpleRenderer::renderMesh(*mesh, true);
     
     Window::update();
+    
+    double endTime = glfwGetTime();
+    Time.deltaTime = endTime - startTime;
 }
 
 
@@ -65,4 +91,40 @@ Program::~Program() {
     delete mesh;
     
     glfwTerminate();
+}
+
+
+static void handleInput() {
+    if (glfwGetKey(Window::window, GLFW_KEY_W)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::FORWARD);
+    }
+    if (glfwGetKey(Window::window, GLFW_KEY_S)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::BACKWARD);
+    }
+    if (glfwGetKey(Window::window, GLFW_KEY_A)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::LEFT);
+    }
+    if (glfwGetKey(Window::window, GLFW_KEY_D)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::RIGHT);
+    }
+}
+
+
+
+static void cursorPosCallback(GLFWwindow* window, double xpos, double ypos) {
+    if (Cursor.firstMouse) {
+        Cursor.lastX = xpos;
+        Cursor.lastY = ypos;
+        Cursor.firstMouse = false;
+    }
+    
+    double xoffset = xpos - Cursor.lastX;
+    double yoffset = Cursor.lastY - ypos;
+    Cursor.lastX = xpos;
+    Cursor.lastY = ypos;
+    
+    xoffset *= Cursor.sensitivity * Time.deltaTime;
+    yoffset *= Cursor.sensitivity * Time.deltaTime;
+    
+    camera.turnEuler(xoffset, yoffset);
 }
