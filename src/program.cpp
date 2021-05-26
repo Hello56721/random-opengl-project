@@ -107,6 +107,17 @@ static void handleInput() {
     if (glfwGetKey(Window::window, GLFW_KEY_D)) {
         camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::RIGHT);
     }
+    
+    if (glfwGetKey(Window::window, GLFW_KEY_SPACE)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::UP);
+    }
+    if (glfwGetKey(Window::window, GLFW_KEY_LEFT_SHIFT)) {
+        camera.moveLocal(2.5f * Time.deltaTime, Camera::Direction::DOWN);
+    }
+    
+    if (glfwGetKey(Window::window, GLFW_KEY_ESCAPE)) {
+        glfwSetInputMode(Window::window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
 }
 
 
