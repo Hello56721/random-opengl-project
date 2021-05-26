@@ -1,6 +1,7 @@
 target_sources(
     "random-opengl-project" PRIVATE
     
+    "camera.hpp"
     "mesh.hpp"
     "model-loader.hpp"
     "opengl-debug.hpp"
