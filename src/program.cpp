@@ -53,6 +53,8 @@ Program::Program() {
         }
     );
     
+    camera.moveLocal(2.0, Camera::Direction::BACKWARD);
+    
     
     glfwSetCursorPosCallback(Window::window, cursorPosCallback);
     glfwSetInputMode(Window::window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
