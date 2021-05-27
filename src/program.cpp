@@ -9,6 +9,7 @@
 #include <shader-class.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <camera.hpp>
+#include <model-loader.hpp>
 
 #include <program.hpp>
 
@@ -38,20 +39,10 @@ Program::Program() {
     
     Window::initWindow();
     
-    basicShader = Shader("shaders/basic.glsl");
+    basicShader = Shader("assets/shaders/basic.glsl");
     
-    mesh = new Mesh(
-        {
-            {{ 0.5f,  0.5f, 0.0f}},
-            {{ 0.5f, -0.5f, 0.0f}},
-            {{-0.5f, -0.5f, 0.0f}},
-            {{-0.5f,  0.5f, 0.0f}}
-        },
-        {
-            0, 1, 2,
-            0, 3, 2
-        }
-    );
+    mesh = new Mesh({},{});
+    *mesh = ModelLoader::loadModel("assets/models/idk-wut-to-put-here.obj");
     
     camera.moveLocal(2.0, Camera::Direction::BACKWARD);
     
