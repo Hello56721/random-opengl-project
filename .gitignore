@@ -4,4 +4,4 @@
 /libs/*
 
 !folder-info.txt
-!/build/shaders
+!/build/assets
