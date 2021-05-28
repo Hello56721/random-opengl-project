@@ -1,12 +1,7 @@
 #ifndef B00FA4FB_806D_46BD_BA09_2BDBDB3FE641
 #define B00FA4FB_806D_46BD_BA09_2BDBDB3FE641
 
-namespace std {
-    template<typename T>
-    class basic_string_view;
-
-    typedef basic_string_view<char> string_view;
-}
+#include <string_view>
 
 class Texture {
 private:
