@@ -10,6 +10,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <camera.hpp>
 #include <model-loader.hpp>
+#include <texture.hpp>
+#include <texture-manager.hpp>
 
 #include <program.hpp>
 
@@ -18,6 +20,8 @@ static Mesh* mesh;
 static Shader basicShader;
 
 static Camera camera;
+
+static Texture woodTexture;
 
 struct {
     double deltaTime;
@@ -44,13 +48,16 @@ Program::Program() {
     mesh = new Mesh({},{});
     *mesh = ModelLoader::loadModel("assets/models/idk-wut-to-put-here.obj");
     
-    camera.moveLocal(2.0, Camera::Direction::BACKWARD);
+    woodTexture = Texture("assets/textures/wood.jpg");
     
+    camera.moveLocal(2.0, Camera::Direction::BACKWARD);
     
     glfwSetCursorPosCallback(Window::window, cursorPosCallback);
     glfwSetInputMode(Window::window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     Cursor.sensitivity = 2.5;
+    
+    glCall(glEnable, GL_DEPTH_TEST);
     
     glfwShowWindow(Window::window);
 }
@@ -62,13 +69,18 @@ void Program::update() {
     
     handleInput();
     
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     basicShader.use();
     
     basicShader.setUniform("model", glm::mat4(1.0));
     basicShader.setUniform("view", camera.getLookAtMatrix());
     basicShader.setUniform("projection", Window::getProjectionMatrix());
+    
+    basicShader.setUniform("myTexture", 0);
+    
+    Texture::setActiveTexture(0);
+    woodTexture.bind();
     
     SimpleRenderer::renderMesh(*mesh, true);
     
@@ -82,6 +94,7 @@ void Program::update() {
 
 Program::~Program() {
     delete mesh;
+    delete TextureManager::getInstance();
     
     glfwTerminate();
 }
