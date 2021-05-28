@@ -6,9 +6,9 @@
 
 #include <iostream>
 
-Mesh ModelLoader::loadModel(const std::string& path) {
+Mesh ModelLoader::loadModel(std::string_view path) {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+    const aiScene* scene = importer.ReadFile(path.data(), aiProcess_Triangulate | aiProcess_FlipUVs);
     
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
         std::cerr << "[ERROR]: Can't load model " << path << std::endl;

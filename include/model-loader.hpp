@@ -6,7 +6,7 @@
 
 namespace ModelLoader {
     // Load a model using assimp
-    Mesh loadModel(const std::string& path);
+    Mesh loadModel(std::string_view path);
 }
 
 #endif /* B7857980_D91D_4395_92F9_845444BBE287 */
