@@ -7,6 +7,7 @@ class Texture {
 private:
     unsigned int texture;
     
+    friend class TextureManager;
 public:
     // Default Constructor
     Texture();
