@@ -14,10 +14,10 @@ Mesh ModelLoader::loadModel(std::string_view path) {
         std::cerr << "[ERROR]: Can't load model " << path << std::endl;
         return Mesh(
             {
-                {{ 0.5f,  0.5f, 0.0f}},
-                {{ 0.5f, -0.5f, 0.0f}},
-                {{-0.5f, -0.5f, 0.0f}},
-                {{-0.5f,  0.5f, 0.0f}}
+                {{ 0.5f,  0.5f, 0.0f}, {1.0f, 1.0f}},
+                {{ 0.5f, -0.5f, 0.0f}, {1.0f, 0.0f}},
+                {{-0.5f, -0.5f, 0.0f}, {0.0f, 0.0f}},
+                {{-0.5f,  0.5f, 0.0f}, {0.0f, 1.0f}}
             },
             {
                 0, 1, 2,
@@ -40,8 +40,17 @@ Mesh ModelLoader::loadModel(std::string_view path) {
             position.y = mesh->mVertices[j].y;
             position.z = mesh->mVertices[j].z;
             
+            glm::vec3 textureCoordinate;
+            if (mesh->mTextureCoords[0]) {
+                textureCoordinate.x = mesh->mTextureCoords[0][j].x;
+                textureCoordinate.y = mesh->mTextureCoords[0][j].y;
+            } else {
+                textureCoordinate = glm::vec3(1.0f, 1.0f, 1.0f);
+            }
+            
             Vertex vertex;
             vertex.position = position;
+            vertex.textureCoordinate = textureCoordinate;
             vertices.push_back(vertex);
         }
         
