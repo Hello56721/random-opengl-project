@@ -28,6 +28,7 @@ include_directories(
     "${GLAD_INCLUDE_DIR}" 
     "${GLM_INCLUDE_DIR}"
     "${ASSIMP_INCLUDE_DIR}"
+    "${STB_INCLUDE_DIR}"
     "${CMAKE_SOURCE_DIR}/include" 
     "${CMAKE_BINARY_DIR}"
 )
@@ -38,6 +39,10 @@ if (BUILD_SHARED_LIBS)
     target_compile_definitions("GLAD" PUBLIC "GLAD_GLAPI_EXPORT" PRIVATE "GLAD_GLAPI_EXPORT_BUILD")
 endif()
 link_libraries("GLAD")
+
+# Set up STB
+add_library("STB" STATIC "src/stb_image.c")
+link_libraries("STB")
 
 # Link GLFW
 if (WIN32)
