@@ -71,6 +71,14 @@ void Camera::turnEuler(double yaw, double pitch) {
     this->yaw += yaw;
     this->pitch += pitch;
     
+    // Clamp the pitch
+    if (pitch > 89.0f) {
+        pitch = 89.0f;
+    }
+    if (pitch < -89.0f) {
+        pitch = -89.0f;
+    }
+    
     recalculate();
 }
 
