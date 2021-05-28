@@ -11,6 +11,7 @@ target_sources(
     "shader-manager.cpp"
     "shader-utils.cpp"
     "simple-renderer.cpp"
+    "texture.cpp"
     "utils.cpp"
     "window.cpp"
 )
