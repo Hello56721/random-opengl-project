@@ -10,6 +10,7 @@ target_sources(
     "shader-manager.hpp"
     "shader-utils.hpp"
     "simple-renderer.hpp"
+    "texture-manager.hpp"
     "texture.hpp"
     "utils.hpp"
     "window.hpp"
