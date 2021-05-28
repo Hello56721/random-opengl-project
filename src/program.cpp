@@ -22,6 +22,7 @@ static Shader basicShader;
 static Camera camera;
 
 static Texture woodTexture;
+static Texture earthTexture;
 
 struct {
     double deltaTime;
@@ -46,9 +47,10 @@ Program::Program() {
     basicShader = Shader("assets/shaders/basic.glsl");
     
     mesh = new Mesh({},{});
-    *mesh = ModelLoader::loadModel("assets/models/idk-wut-to-put-here.obj");
+    *mesh = ModelLoader::loadModel("assets/models/sphere.obj");
     
     woodTexture = Texture("assets/textures/wood.jpg");
+    earthTexture = Texture("assets/textures/earth.jpeg");
     
     camera.moveLocal(2.0, Camera::Direction::BACKWARD);
     
@@ -80,7 +82,7 @@ void Program::update() {
     basicShader.setUniform("myTexture", 0);
     
     Texture::setActiveTexture(0);
-    woodTexture.bind();
+    earthTexture.bind();
     
     SimpleRenderer::renderMesh(*mesh, true);
     
