@@ -20,6 +20,7 @@ find_package("GLFW")
 find_package("GLAD")
 find_package("GLM")
 find_package("Assimp")
+find_package("STB")
 
 # Set the includes
 include_directories(
