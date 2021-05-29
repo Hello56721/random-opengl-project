@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 #include <opengl-debug.hpp>
 #include <shader-manager.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Shader::Shader(): program(0) {
     
@@ -30,4 +31,12 @@ void Shader::use() const {
 
 void Shader::setUniform(std::string_view name, float value) const {
     glCall(glUniform1f, glCallR(glGetUniformLocation, program, name.data()), value);
+}
+
+void Shader::setUniform(std::string_view name, int value) const {
+    glCall(glUniform1i, glCallR(glGetUniformLocation, program, name.data()), value);
+}
+
+void Shader::setUniform(std::string_view name, const glm::mat4& value) const {
+    glCall(glUniformMatrix4fv, glCallR(glGetUniformLocation, program, name.data()), 1, GL_FALSE, glm::value_ptr(value));
 }

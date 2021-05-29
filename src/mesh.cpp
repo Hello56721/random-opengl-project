@@ -38,6 +38,8 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices) {
     
     glCall(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
     glCall(glEnableVertexAttribArray, 0);
+    glCall(glVertexAttribPointer, 1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, textureCoordinate));
+    glCall(glEnableVertexAttribArray, 1);
     
     glCall(glBindVertexArray, 0);
 }
@@ -78,6 +80,8 @@ Mesh::Mesh(Mesh& src) {
     
     glCall(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
     glCall(glEnableVertexAttribArray, 0);
+    glCall(glVertexAttribPointer, 1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, textureCoordinate));
+    glCall(glEnableVertexAttribArray, 1);
     
     glCall(glBindVertexArray, 0);
 }
