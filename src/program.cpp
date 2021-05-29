@@ -31,10 +31,6 @@ static Texture woodTexture;
 static Texture earthTexture;
 
 struct {
-    double deltaTime;
-} Time;
-
-struct {
     double lastX;
     double lastY;
     bool firstMouse = true;
