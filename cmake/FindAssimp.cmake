@@ -7,7 +7,7 @@ find_path(
 find_library(
     ASSIMP_LIBRARY
     PATHS "${CMAKE_SOURCE_DIR}/libs/Assimp/lib" 
-    NAMES "assimp.lib" "libassimp.so" "libassimp.a"
+    NAMES "assimp.lib" "libassimp.so" "libassimp.a" "libassimp.dll.a"
 )
 
 include("FindPackageHandleStandardArgs")
