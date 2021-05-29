@@ -6,7 +6,7 @@ find_path(
 
 find_library(
     ASSIMP_LIBRARY
-    PATHS "${CMAKE_SOURCE_DIR}/libs/Assimp/lib" 
+    PATHS "${CMAKE_SOURCE_DIR}/libs/Assimp/lib" "${CMAKE_BINARY_DIR}"
     NAMES "assimp.lib" "libassimp.so" "libassimp.a" "libassimp.dll.a"
 )
 
