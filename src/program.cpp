@@ -48,7 +48,7 @@ Program::Program() {
     
     basicShader = Shader("assets/shaders/basic.glsl");
     
-    mesh = new Mesh({},{});
+    mesh = new Mesh();
     *mesh = ModelLoader::loadModel("assets/models/sphere.obj");
     
     woodTexture = Texture("assets/textures/wood.jpg");
