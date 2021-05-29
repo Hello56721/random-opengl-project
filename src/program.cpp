@@ -7,19 +7,26 @@
 #include <mesh.hpp>
 #include <simple-renderer.hpp>
 #include <shader-class.hpp>
+#include <sstream>
 
 #include <program.hpp>
 
 static Mesh* mesh;
 
-static Shader basicShader;
+static Shader* basicShader;
+
+struct {
+    double deltaTime;
+    double startTime;
+    double endTime;
+} Time;
 
 Program::Program() {
     std::cout << "[INFO]: Hello!" << std::endl;
     
     Window::initWindow();
     
-    basicShader = Shader("shaders/basic.glsl");
+    basicShader = new Shader("shaders/basic.glsl");
     
     mesh = new Mesh(
         {
@@ -40,19 +47,29 @@ Program::Program() {
 
 
 void Program::update() {
+    Time.startTime = glfwGetTime();
+    
     glClear(GL_COLOR_BUFFER_BIT);
     
-    basicShader.use();
+    basicShader->use();
     SimpleRenderer::renderMesh(*mesh, true);
+    
+    std::stringstream title;
+    title << "Random OpenGL Project\tFPS: " << 1.0 / Time.deltaTime;
+    glfwSetWindowTitle(Window::window, title.str().c_str());
     
     glfwSwapBuffers(Window::window);
     glfwPollEvents();
+    
+    Time.endTime = glfwGetTime();
+    Time.deltaTime = Time.endTime - Time.startTime;
 }
 
 
 
 Program::~Program() {
     delete mesh;
+    delete basicShader;
     
     glfwTerminate();
 }
