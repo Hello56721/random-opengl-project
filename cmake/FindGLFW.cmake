@@ -9,7 +9,8 @@ find_library(
     GLFW_LIBRARY
     NAMES "libglfw3.a" "libglfw3dll.a" "libglfw.so" "glfw3.lib" "glfw3dll.lib"
     DOC "Absolute path to GLFW's library"
-    PATHS "${CMAKE_SOURCE_DIR}/libs/GLFW/lib" "${CMAKE_SOURCE_DIR}/libs/GLFW/src" "${CMAKE_SOURCE_DIR}/libs/GLFW/build/src"
+    PATHS "${CMAKE_SOURCE_DIR}/libs/GLFW/lib" "${CMAKE_SOURCE_DIR}/libs/GLFW/src" "${CMAKE_SOURCE_DIR}/libs/GLFW/build/src" 
+          "${CMAKE_BINARY_DIR}"
 )
 
 include("FindPackageHandleStandardArgs")
